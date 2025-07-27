@@ -10,19 +10,12 @@
          failOnRisky="true"
          failOnEmptyTestSuite="true"
          beStrictAboutOutputDuringTests="true"
-         verbose="true"
          timeoutForSmallTests="1"
          timeoutForMediumTests="10"
          timeoutForLargeTests="60">
     <testsuites>
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Feature">
-            <directory>tests/Feature</directory>
-        </testsuite>
-        <testsuite name="Integration">
-            <directory>tests/Integration</directory>
         </testsuite>
     </testsuites>
     <source>

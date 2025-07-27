@@ -114,30 +114,32 @@ abstract class TestCase extends Orchestra
      * @param array $attributes
      * @return array
      */
-    protected function createMockWorkOSUser(array $attributes = []): array
+    protected function createMockWorkOSUser(array $attributes = []): \LaravelWorkOS\Auth\Models\WorkOSUser
     {
-        return array_merge([
+        $userData = array_merge([
             'id' => 'user_test_123456789',
             'email' => 'test@example.com',
             'first_name' => 'Test',
             'last_name' => 'User',
             'created_at' => '2023-01-01T00:00:00.000Z',
             'updated_at' => '2023-01-01T00:00:00.000Z',
-            'organization_memberships' => [
+            'organization_id' => 'org_test_123456789',
+            'organizations' => [
                 [
-                    'id' => 'org_membership_123',
-                    'organization' => [
-                        'id' => 'org_test_123456789',
-                        'name' => 'Test Organization',
-                        'domains' => [
-                            ['domain' => 'example.com']
-                        ]
+                    'id' => 'org_test_123456789',
+                    'name' => 'Test Organization',
+                    'domains' => [
+                        ['domain' => 'example.com']
                     ],
                     'permissions' => ['read', 'write'],
-                    'role' => ['name' => 'admin'],
+                    'role' => 'admin',
                 ]
-            ]
+            ],
+            'permissions' => ['read', 'write'],
+            'roles' => ['admin'],
         ], $attributes);
+        
+        return new \LaravelWorkOS\Auth\Models\WorkOSUser($userData);
     }
 
     /**

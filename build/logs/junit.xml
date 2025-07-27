@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/Users/roblane/Development/ComposerPackages/laravel-work-os/phpunit.xml" tests="6" assertions="20" errors="0" failures="0" skipped="0" time="0.062933">
+    <testsuite name="Unit" tests="6" assertions="20" errors="0" failures="0" skipped="0" time="0.062933">
+      <testsuite name="LaravelWorkOS\Tests\Unit\Auth\Guards\WorkOSApiGuardTest" file="/Users/roblane/Development/ComposerPackages/laravel-work-os/tests/Unit/Auth/Guards/WorkOSApiGuardTest.php" tests="6" assertions="20" errors="0" failures="0" skipped="0" time="0.062933">
+        <testcase name="it_returns_null_when_no_token_provided" file="/Users/roblane/Development/ComposerPackages/laravel-work-os/tests/Unit/Auth/Guards/WorkOSApiGuardTest.php" line="77" class="LaravelWorkOS\Tests\Unit\Auth\Guards\WorkOSApiGuardTest" classname="LaravelWorkOS.Tests.Unit.Auth.Guards.WorkOSApiGuardTest" assertions="1" time="0.043997"/>
+        <testcase name="it_returns_null_when_token_validation_fails" file="/Users/roblane/Development/ComposerPackages/laravel-work-os/tests/Unit/Auth/Guards/WorkOSApiGuardTest.php" line="104" class="LaravelWorkOS\Tests\Unit\Auth\Guards\WorkOSApiGuardTest" classname="LaravelWorkOS.Tests.Unit.Auth.Guards.WorkOSApiGuardTest" assertions="1" time="0.006534"/>
+        <testcase name="it_can_extract_bearer_token_from_authorization_header" file="/Users/roblane/Development/ComposerPackages/laravel-work-os/tests/Unit/Auth/Guards/WorkOSApiGuardTest.php" line="40" class="LaravelWorkOS\Tests\Unit\Auth\Guards\WorkOSApiGuardTest" classname="LaravelWorkOS.Tests.Unit.Auth.Guards.WorkOSApiGuardTest" assertions="8" time="0.003581"/>
+        <testcase name="it_validates_credentials" file="/Users/roblane/Development/ComposerPackages/laravel-work-os/tests/Unit/Auth/Guards/WorkOSApiGuardTest.php" line="139" class="LaravelWorkOS\Tests\Unit\Auth\Guards\WorkOSApiGuardTest" classname="LaravelWorkOS.Tests.Unit.Auth.Guards.WorkOSApiGuardTest" assertions="1" time="0.002555"/>
+        <testcase name="it_fails_validation_with_invalid_credentials" file="/Users/roblane/Development/ComposerPackages/laravel-work-os/tests/Unit/Auth/Guards/WorkOSApiGuardTest.php" line="163" class="LaravelWorkOS\Tests\Unit\Auth\Guards\WorkOSApiGuardTest" classname="LaravelWorkOS.Tests.Unit.Auth.Guards.WorkOSApiGuardTest" assertions="1" time="0.003308"/>
+        <testcase name="it_caches_authenticated_user" file="/Users/roblane/Development/ComposerPackages/laravel-work-os/tests/Unit/Auth/Guards/WorkOSApiGuardTest.php" line="187" class="LaravelWorkOS\Tests\Unit\Auth\Guards\WorkOSApiGuardTest" classname="LaravelWorkOS.Tests.Unit.Auth.Guards.WorkOSApiGuardTest" assertions="8" time="0.002958"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

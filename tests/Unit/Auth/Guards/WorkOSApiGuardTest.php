@@ -41,10 +41,25 @@ class WorkOSApiGuardTest extends TestCase
     {
         $token = 'test-jwt-token';
         
+        // Mock request methods that the guard actually calls
         $this->mockRequest
-            ->shouldReceive('bearerToken')
+            ->shouldReceive('header')
+            ->with('Authorization')
             ->once()
-            ->andReturn($token);
+            ->andReturn('Bearer ' . $token);
+        
+        $this->mockRequest
+            ->shouldReceive('header')
+            ->with('X-Request-ID')
+            ->andReturn('test-request-id');
+        
+        $this->mockRequest
+            ->shouldReceive('ip')
+            ->andReturn('127.0.0.1');
+            
+        $this->mockRequest
+            ->shouldReceive('userAgent')
+            ->andReturn('Test Agent');
 
         $this->mockProvider
             ->shouldReceive('validateToken')
@@ -61,8 +76,22 @@ class WorkOSApiGuardTest extends TestCase
     /** @test */
     public function it_returns_null_when_no_token_provided(): void
     {
+        // Mock all the header methods the guard checks
         $this->mockRequest
-            ->shouldReceive('bearerToken')
+            ->shouldReceive('header')
+            ->with('Authorization')
+            ->once()
+            ->andReturn(null);
+            
+        $this->mockRequest
+            ->shouldReceive('header')
+            ->with('X-WorkOS-Token')
+            ->once()
+            ->andReturn(null);
+            
+        $this->mockRequest
+            ->shouldReceive('query')
+            ->with('token')
             ->once()
             ->andReturn(null);
 
@@ -77,9 +106,23 @@ class WorkOSApiGuardTest extends TestCase
         $token = 'invalid-token';
         
         $this->mockRequest
-            ->shouldReceive('bearerToken')
+            ->shouldReceive('header')
+            ->with('Authorization')
             ->once()
-            ->andReturn($token);
+            ->andReturn('Bearer ' . $token);
+            
+        $this->mockRequest
+            ->shouldReceive('header')
+            ->with('X-Request-ID')
+            ->andReturn('test-request-id');
+            
+        $this->mockRequest
+            ->shouldReceive('ip')
+            ->andReturn('127.0.0.1');
+            
+        $this->mockRequest
+            ->shouldReceive('userAgent')
+            ->andReturn('Test Agent');
 
         $this->mockProvider
             ->shouldReceive('validateToken')
@@ -97,11 +140,19 @@ class WorkOSApiGuardTest extends TestCase
     {
         $credentials = ['token' => 'test-jwt-token'];
 
+        $this->mockRequest
+            ->shouldReceive('ip')
+            ->andReturn('127.0.0.1');
+            
+        $this->mockRequest
+            ->shouldReceive('userAgent')
+            ->andReturn('Test Agent');
+
         $this->mockProvider
-            ->shouldReceive('validateCredentials')
-            ->with(null, $credentials)
+            ->shouldReceive('validateToken')
+            ->with('test-jwt-token')
             ->once()
-            ->andReturn(true);
+            ->andReturn($this->createMockWorkOSUser());
 
         $result = $this->guard->validate($credentials);
 
@@ -113,11 +164,19 @@ class WorkOSApiGuardTest extends TestCase
     {
         $credentials = ['token' => 'invalid-token'];
 
+        $this->mockRequest
+            ->shouldReceive('ip')
+            ->andReturn('127.0.0.1');
+            
+        $this->mockRequest
+            ->shouldReceive('userAgent')
+            ->andReturn('Test Agent');
+
         $this->mockProvider
-            ->shouldReceive('validateCredentials')
-            ->with(null, $credentials)
+            ->shouldReceive('validateToken')
+            ->with('invalid-token')
             ->once()
-            ->andReturn(false);
+            ->andReturn(null);
 
         $result = $this->guard->validate($credentials);
 
@@ -131,9 +190,23 @@ class WorkOSApiGuardTest extends TestCase
         $mockUser = $this->createMockWorkOSUser();
         
         $this->mockRequest
-            ->shouldReceive('bearerToken')
+            ->shouldReceive('header')
+            ->with('Authorization')
             ->once()
-            ->andReturn($token);
+            ->andReturn('Bearer ' . $token);
+            
+        $this->mockRequest
+            ->shouldReceive('header')
+            ->with('X-Request-ID')
+            ->andReturn('test-request-id');
+            
+        $this->mockRequest
+            ->shouldReceive('ip')
+            ->andReturn('127.0.0.1');
+            
+        $this->mockRequest
+            ->shouldReceive('userAgent')
+            ->andReturn('Test Agent');
 
         $this->mockProvider
             ->shouldReceive('validateToken')
